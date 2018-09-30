@@ -31,7 +31,9 @@ async function handleRequest(event) {
   const { request } = event;
 
   try {
-    const isHtml = request.headers.get("accept").includes("text/html");
+    const isHtml =
+      request.headers.has("accept") &&
+      request.headers.get("accept").includes("text/html");
 
     const [response, fontResponse] = await Promise.all([
       fetch(request),
